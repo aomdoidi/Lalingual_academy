@@ -52,20 +52,7 @@
   
 }
 
-@media (max-width: 640px) {
-  .hero-actions {
-    width: 30%;
-    margin-top: 16px;
-    align-items: flex-start;
-  }
 
-  .hero-actions a {
-    width: 100%;
-    max-width: 270px;
-    padding: 9px 10px;
-    font-size: 13px;
-  }
-}
 /* Desktop */
 .hero-copy {
   display: block;
@@ -119,6 +106,22 @@
   .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(255,46,110,.15); }
   .teacher-photo { -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%); mask-image: linear-gradient(to bottom, #000 82%, transparent 100%); border-radius: 1.5rem; }
   .lang-btn.active { background: #ff2e6e; color: #fff; }
+
+  @media (max-width: 640px) {
+  .hero-actions {
+    width: 64vw;
+    max-width: 270px;
+    align-items: stretch;
+    margin-left: 0;
+  }
+
+  .hero-actions a {
+    width: 100%;
+    max-width: none;
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+}
 </style>
 </head>
 <body class="bg-white antialiased">
