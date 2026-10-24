@@ -21,8 +21,8 @@
 <style>
   body { font-family: 'Poppins', 'Noto Sans Thai', sans-serif; color: #0f1b4d; }
 .hero-bg {
-  background: url("images/teacher.png") right top / contain no-repeat;
-  background-position: 100% 0%;
+  background: url("images/teacher.png") center right / cover no-repeat;
+  min-height: 550px; /* กำหนดความสูงขั้นต่ำ ให้รูปไม่หดเล็กลงเวลาลบตัวหนังสือ */
 }
   .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
   .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(8px); transition: all .2s ease; }
@@ -101,11 +101,7 @@
 <!-- ================= HERO ================= -->
 <section id="about" class="hero-bg relative overflow-hidden">
   <!-- พื้นหลังโทนพาสเทลเรียบ เพื่อเน้นรูปผู้สอน -->
-  <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-    <div class="absolute -right-20 -top-24 w-[30rem] h-[30rem] rounded-full bg-blue-200/35 blur-3xl"></div>
-    <div class="absolute right-1/4 bottom-0 w-72 h-72 rounded-full bg-pink-200/40 blur-3xl"></div>
 
-  </div>
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-14 lg:py-20 grid lg:grid-cols-2 gap-10 items-center">
     <div class="relative z-10">
