@@ -49,6 +49,53 @@
   .hero-copy {
     width: min(88vw, 620px);
   }
+  
+}
+/* Desktop */
+.hero-copy {
+  display: block;
+  width: min(40vw, 700px);
+  height: auto;
+  position: relative;
+  left: -80px;
+}
+
+/* Mobile */
+@media (max-width: 1023px) {
+  .hero-bg {
+    min-height: 700px;
+  }
+
+  .hero-bg::before {
+    background-position: 72% center;
+  }
+
+  .hero-copy {
+    width: 86vw;
+    max-width: 430px;
+    left: 0;
+    margin: 0 auto;
+  }
+
+  .hero-actions {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-actions a {
+    width: 86vw;
+    max-width: 340px;
+    justify-content: center;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+}
+
+.copy-hidden {
+  display: none !important;
 }
   .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
   .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(8px); transition: all .2s ease; }
@@ -126,17 +173,25 @@
 <main id="top">
 <!-- ================= HERO ================= -->
 <section id="about" class="hero-bg relative overflow-hidden">
-  <!-- พื้นหลังโทนพาสเทลเรียบ เพื่อเน้นรูปผู้สอน -->
+  
 
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-14 lg:py-20 grid lg:grid-cols-2 gap-10 items-center">
     <div class="relative z-10 -translate-y-10">
       <img
-    src="images/hero-copy.png"
-    alt="สอนภาษาอังกฤษสำหรับทุกวัย"
-    class="hero-copy"
-  >
-      <div class="mt-1 flex flex-wrap gap-3">
+  src="images/hero-copy-th.png"
+  alt="สอนภาษาอังกฤษสำหรับทุกวัย"
+  class="hero-copy"
+  data-hero-copy="th"
+>
+
+<img
+  src="images/hero-copy-en.png"
+  alt="English lessons for all ages"
+  class="hero-copy copy-hidden"
+  data-hero-copy="en"
+>
+      <div class="hero-actions mt-2 flex flex-wrap gap-3">
         <a href="#contact" class="inline-flex items-center gap-2 bg-brand-pink hover:bg-brand-pinkdark text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-pink-200 transition">
           <span>📅</span><span data-i18n="cta_trial"></span>
         </a>
@@ -381,21 +436,39 @@ const i18n = {
 function setLang(lang) {
   const dict = i18n[lang] || i18n.th;
   document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-hero-copy]').forEach(img => {
+    img.classList.toggle(
+      'copy-hidden',
+      img.dataset.heroCopy !== lang
+    );
+  });
+
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const val = dict[el.dataset.i18n];
     if (val === undefined) return;
-    // ข้อความเป็นของเราเองทั้งหมด จึงใช้ innerHTML ได้อย่างปลอดภัย
     el.innerHTML = val;
   });
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.lang === lang)
+  );
+
   try { localStorage.setItem('lang', lang); } catch (e) {}
 }
-document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+document.querySelectorAll('.lang-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    setLang(button.dataset.lang);
+  });
+});
 
-let saved = 'th';
-try { saved = localStorage.getItem('lang') || 'th'; } catch (e) {}
-setLang(saved);
+let savedLang = 'th';
 
+try {
+  savedLang = localStorage.getItem('lang') || 'th';
+} catch (e) {}
+
+setLang(savedLang);
 /* ============ Mobile menu ============ */
 document.getElementById('menuBtn').addEventListener('click', () => {
   document.getElementById('mobileNav').classList.toggle('hidden');
