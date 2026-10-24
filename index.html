@@ -35,6 +35,21 @@
   background: url("images/teacher.png") center / cover no-repeat;
   filter: saturate(1.18) contrast(1.05);
 }
+
+.hero-copy {
+  display: block;
+  width: min(40vw, 700px);
+  max-width: none;
+  height: auto;
+  position: relative;
+  left: -80px;
+}
+
+@media (max-width: 1023px) {
+  .hero-copy {
+    width: min(88vw, 620px);
+  }
+}
   .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
   .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(8px); transition: all .2s ease; }
   .dropdown-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
@@ -115,9 +130,13 @@
 
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-14 lg:py-20 grid lg:grid-cols-2 gap-10 items-center">
-    <div class="relative z-10">
-      
-      <div class="mt-8 flex flex-wrap gap-3">
+    <div class="relative z-10 -translate-y-10">
+      <img
+    src="images/hero-copy.png"
+    alt="สอนภาษาอังกฤษสำหรับทุกวัย"
+    class="hero-copy"
+  >
+      <div class="mt-1 flex flex-wrap gap-3">
         <a href="#contact" class="inline-flex items-center gap-2 bg-brand-pink hover:bg-brand-pinkdark text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-pink-200 transition">
           <span>📅</span><span data-i18n="cta_trial"></span>
         </a>
